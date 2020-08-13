@@ -8,6 +8,12 @@
   "devDependencies": {
     "@prisma/cli": "2.9.0"
   },
+  "prettier": {
+    "trailingComma": "all",
+    "printWidth": 80,
+    "semi": false,
+    "singleQuote": true
+  },
   "scripts": {
     "dev": "node ./script.js"
   },
