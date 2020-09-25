@@ -15,7 +15,7 @@
     "singleQuote": true
   },
   "scripts": {
-    "dev": "node ./script.js"
+    "demo": "node ./script-clean.js"
   },
   "engines": {
     "node": ">=10.0.0"

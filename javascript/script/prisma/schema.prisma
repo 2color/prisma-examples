@@ -4,7 +4,7 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = "postgresql://prisma:prisma@127.0.0.1:5432/budapest"
+  url      = "postgresql://prisma:prisma@127.0.0.1:5432/nodejsday"
 }
 
 // Maps to a database table

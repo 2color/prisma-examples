@@ -8,6 +8,7 @@ async function main() {
   await prisma.comment.deleteMany({})
   await prisma.post.deleteMany({})
   await prisma.user.deleteMany({})
+
   // Create 2 users
   const user1 = await prisma.user.create({
     data: {
@@ -99,5 +100,5 @@ main()
     process.exit(1)
   })
   .finally(async () => {
-    await prisma.disconnect()
+    await prisma.$disconnect()
   })

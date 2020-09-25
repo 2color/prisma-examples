@@ -7,3 +7,4 @@
 1. Generate Prisma Client
   - `yarn prisma generate`
 1. Explore Prisma Client API
+1. Studio
