@@ -4,39 +4,32 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = "postgresql://prisma:prisma@127.0.0.1:5432/nodejsday"
-}
-
-// Maps to a database table
-model User {
-  email String  @unique
-  id    Int     @default(autoincrement()) @id
-  name  String?
-
-  // relation fields
-  posts    Post[]
-  comments Comment[]
-}
-
-model Post {
-  id        Int     @default(autoincrement()) @id
-  content   String?
-  published Boolean @default(false)
-  title     String
-
-  // relation fields
-  author   User?     @relation(fields: [authorId], references: [id])
-  authorId Int?
-  comments Comment[]
+  url      = "postgresql://test-user:test-password@127.0.0.1:54˛32/warsawjs"
 }
 
 model Comment {
-  id      Int    @default(autoincrement()) @id
   comment String
+  userId  Int
+  postId  Int
+  id      Int    @id @default(autoincrement())
+  Post    Post   @relation(fields: [postId], references: [id])
+  User    User   @relation(fields: [userId], references: [id])
+}
 
-  // relation fields
-  postId Int
-  post   Post @relation(fields: [postId], references: [id])
-  userId Int
-  user   User @relation(fields: [userId], references: [id])
+model Post {
+  id        Int       @id @default(autoincrement())
+  content   String?
+  published Boolean   @default(false)
+  title     String
+  authorId  Int?
+  User      User?     @relation(fields: [authorId], references: [id])
+  Comment   Comment[]
+}
+
+model User {
+  email   String    @unique
+  id      Int       @id @default(autoincrement())
+  name    String?
+  Comment Comment[]
+  Post    Post[]
 }
