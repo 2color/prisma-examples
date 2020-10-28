@@ -16,14 +16,14 @@ jobs:
         image: mcr.microsoft.com/mssql/server:2019-latest
         env:
           ACCEPT_EULA: Y
-          SA_PASSWORD: 'prisma123'
+          SA_PASSWORD: 'Pr1sm4_Pr1sm4'
         # Maps tcp port 1433 on service container to the host
         ports:
           - '1433:1433'
         options: --health-cmd="/opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P ${SA_PASSWORD} -Q 'SELECT 1' || exit 1"  --health-interval 20s --health-timeout 30s --health-retries 10
 
     env:
-      DATABASE_URL: DATABASE_URL=sqlserver://localhost:1433;database=prisma;user=SA;password=prisma123;trustServerCertificate=true;encrypt=true
+      DATABASE_URL: DATABASE_URL=sqlserver://localhost:1433;database=prisma;user=SA;password=Pr1sm4_Pr1sm4;trustServerCertificate=true;encrypt=true
 
     steps:
       - uses: actions/checkout@v2
@@ -31,7 +31,7 @@ jobs:
         uses: docker://mcr.microsoft.com/mssql-tools
         with:
           entrypoint: /opt/mssql-tools/bin/sqlcmd
-          args: '-S sql-server -U SA -P prisma123 -i ./databases/sql-server/schema.sql'
+          args: '-S sql-server -U SA -P Pr1sm4_Pr1sm4 -i ./databases/sql-server/schema.sql'
       # - uses: actions/setup-node@v1
       #   with:
       #     node-version: '14.x'
