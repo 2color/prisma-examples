@@ -7,6 +7,9 @@ on:
 
 jobs:
   test:
+    defaults:
+      run:
+        working-directory: databases/sql-server
     runs-on: ubuntu-latest
     # Service containers to run with `container-job`
     services:
@@ -37,5 +40,5 @@ jobs:
           node-version: '14.x'
       - run: npm ci
       - run: npx prisma introspect
-      - run: cat databases/sql-server/prisma.schema
+      - run: cat prisma/prisma.schema
       - run: npm run test
