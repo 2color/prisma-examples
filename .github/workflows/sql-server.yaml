@@ -24,12 +24,12 @@ jobs:
       DATABASE_URL: DATABASE_URL=sqlserver://localhost:1433;database=prisma;user=SA;password=prisma123;trustServerCertificate=true;encrypt=true
 
     steps:
+      - uses: actions/checkout@v2
       - name: migrate-db
         run: sqlcmd -h sql-server -U SA -P prisma123 -i ./databases/sql-server/schema.sql
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
-        with:
-          node-version: '14.x'
-      - run: npm ci
-      - run: npx prisma introspect
-      - run: npm run test
+      # - uses: actions/setup-node@v1
+      #   with:
+      #     node-version: '14.x'
+      # - run: npm ci
+      # - run: npx prisma introspect
+      # - run: npm run test
