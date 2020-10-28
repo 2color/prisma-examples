@@ -6,6 +6,8 @@ on:
 
 jobs:
   test:
+    container:
+      image: mcr.microsoft.com/mssql-tools
     runs-on: ubuntu-latest
     # Service containers to run with `container-job`
     services:
@@ -24,12 +26,8 @@ jobs:
 
     steps:
       - name: migrate-db
-        uses: docker://mcr.microsoft.com/mssql-tools
         shell: bash
-        run: |
-          sqlcmd -h sql-server -U SA -P prisma123 -i /data/schema.sql
-        volumes:
-          - ./databases/sql-server:/data
+        run: sqlcmd -h sql-server -U SA -P prisma123 -i ./schema.sql
         working-directory: ./databases/sql-server/
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
