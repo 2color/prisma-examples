@@ -15,12 +15,12 @@ jobs:
         # Docker Hub image
         image: mcr.microsoft.com/mssql/server:2019-latest
         env:
+          ACCEPT_EULA: Y
           SA_PASSWORD: 'prisma123'
-          ACCEPT_EULA: 'Y'
         # Maps tcp port 1433 on service container to the host
         ports:
           - '1433:1433'
-        options: --health-cmd="/opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P ${SA_PASSWORD} -Q 'SELECT 1' || exit 1"  --health-interval 10s --health-timeout 5s --health-retries 5
+        options: --health-cmd="/opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P ${SA_PASSWORD} -Q 'SELECT 1' || exit 1"  --health-interval 20s --health-timeout 30s --health-retries 10
 
     env:
       DATABASE_URL: DATABASE_URL=sqlserver://localhost:1433;database=prisma;user=SA;password=prisma123;trustServerCertificate=true;encrypt=true
