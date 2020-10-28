@@ -1,13 +1,12 @@
 name: sql-server
-on:
-  push:
-    paths:
-      - databases/sql-server/*'
+on: push
+  # push:
+  #   paths:
+  #      - databases/sql-server/*'
 
 jobs:
   test:
-    container:
-      image: mcr.microsoft.com/mssql-tools
+    container: mcr.microsoft.com/mssql-tools
     runs-on: ubuntu-latest
     # Service containers to run with `container-job`
     services:
@@ -26,9 +25,7 @@ jobs:
 
     steps:
       - name: migrate-db
-        shell: bash
-        run: sqlcmd -h sql-server -U SA -P prisma123 -i ./schema.sql
-        working-directory: ./databases/sql-server/
+        run: sqlcmd -h sql-server -U SA -P prisma123 -i ./databases/sql-server/schema.sql
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
         with:
