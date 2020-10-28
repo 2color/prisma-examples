@@ -29,7 +29,7 @@ jobs:
         uses: docker://mcr.microsoft.com/mssql-tools
         with:
           entrypoint: /opt/mssql-tools/bin/sqlcmd
-          args: '-s localhost -U SA -P prisma123 -i ./databases/sql-server/schema.sql'
+          args: '-S sql-server -U SA -P prisma123 -i ./databases/sql-server/schema.sql'
       # - uses: actions/setup-node@v1
       #   with:
       #     node-version: '14.x'
