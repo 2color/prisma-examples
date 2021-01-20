@@ -1,24 +1,37 @@
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
+  previewFeatures = ["nativeTypes"]
 }
 
 datasource db {
-  provider = "sqlite"
-  url      = "file:./dev.db"
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
 model Post {
-  id        Int     @default(autoincrement()) @id
-  title     String
+  id        String  @id @default(uuid()) @db.Uuid
+  title     String  @db.VarChar(100)
   content   String?
   published Boolean @default(false)
-  author    User?   @relation(fields: [authorId], references: [id])
-  authorId  Int?
+  author    User    @relation(fields: [authorId], references: [id])
+  authorId  String  @db.Uuid
 }
 
 model User {
-  id    Int     @default(autoincrement()) @id
-  email String  @unique
-  name  String?
-  posts Post[]
+  id           String  @id @default(uuid()) @db.Uuid
+  email        String  @unique
+  name         String?
+  posts        Post[]
+  tipsGiven    Tip[]   @relation("tipper")
+  tipsRecieved Tip[]   @relation("user")
+}
+
+model Tip {
+  id       String  @id @default(uuid()) @db.Uuid
+  tipper   User    @relation(name: "tipper", fields: [tipperId], references: [id])
+  tipperId String  @db.Uuid
+  user     User    @relation(name: "user", fields: [userId], references: [id])
+  userId   String  @db.Uuid
+  amount   Decimal
+  note     String?
 }

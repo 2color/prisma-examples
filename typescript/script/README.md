@@ -2,6 +2,12 @@
 
 This example shows how to use [Prisma Client](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client) in a **simple TypeScript script** to read and write data in a SQLite database. You can find the database file with some dummy data at [`./prisma/dev.db`](./prisma/dev.db).
 
+- Using native types to define UUID primary keys
+- Using the decimal type
+- New migrate with native types
+- Seed script to load data into the database
+- Explore group by and aggregation queries
+
 ## How to use
 
 ### 1. Download example & install dependencies
