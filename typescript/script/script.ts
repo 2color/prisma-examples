@@ -65,18 +65,18 @@ async function main() {
   })
   console.log(avgUserRatings)
 
-  // const userRatingsCount = await prisma.userRatings.groupBy({
-  //   by: ['userId'],
-  //   count: {
-  //     rating: true
-  //   },
-  //   orderBy: {
-  //     _count: {
-  //       userId: 'desc',
-  //     },
-  //   },
-  // })
-  // console.log(userRatingsCount)
+  const userRatingsCount = await prisma.userRatings.groupBy({
+    by: ['userId'],
+    count: {
+      rating: true
+    },
+    orderBy: {
+      _count: {
+        userId: 'desc',
+      },
+    },
+  })
+  console.log(userRatingsCount)
 }
 
 main()
